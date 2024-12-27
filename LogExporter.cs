@@ -12,13 +12,52 @@ public class LogExporter
         ExportPath = exportPath;
     }
 
-    public void ExportToCSV(List<string> logs)
+    public void ExportLogs(List<string> logs, ExportFormat format, bool overwrite = false)
     {
-        File.WriteAllLines($"{ExportPath}.csv", logs);
+        string filePath = GetFilePath(format);
+
+        if (File.Exists(filePath) && !overwrite)
+        {
+            Console.WriteLine($"File {filePath} already exists. Use overwrite option to replace it.");
+            return;
+        }
+
+        try
+        {
+            switch (format)
+            {
+                case ExportFormat.CSV:
+                    ExportToCSV(logs, filePath);
+                    break;
+                case ExportFormat.TXT:
+                    ExportToTXT(logs, filePath);
+                    break;
+                case ExportFormat.PDF:
+                    Console.WriteLine("PDF export is not implemented yet.");
+                    break;
+                default:
+                    throw new NotSupportedException("Unsupported export format.");
+            }
+            Console.WriteLine($"Logs exported successfully to {filePath}!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error exporting logs: {ex.Message}");
+        }
     }
 
-    public void ExportToTXT(List<string> logs)
+    public void ExportToCSV(List<string> logs, string filePath)
     {
-        File.WriteAllLines($"{ExportPath}.txt", logs);
+        File.WriteAllLines(filePath, logs);
+    }
+
+    private void ExportToTXT(List<string> logs, string filePath)
+    {
+        File.WriteAllLines(filePath, logs);
+    }
+
+    private string GetFilePath(ExportFormat format)
+    {
+        return $"{ExportPath}.{format.ToString().ToLower()}";
     }
 }
