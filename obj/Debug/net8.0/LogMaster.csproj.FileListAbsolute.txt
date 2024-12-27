@@ -1,0 +1,14 @@
+C:\Users\nidha\OneDrive\Bureau\LogMaster\bin\Debug\net8.0\LogMaster.exe
+C:\Users\nidha\OneDrive\Bureau\LogMaster\bin\Debug\net8.0\LogMaster.deps.json
+C:\Users\nidha\OneDrive\Bureau\LogMaster\bin\Debug\net8.0\LogMaster.runtimeconfig.json
+C:\Users\nidha\OneDrive\Bureau\LogMaster\bin\Debug\net8.0\LogMaster.dll
+C:\Users\nidha\OneDrive\Bureau\LogMaster\bin\Debug\net8.0\LogMaster.pdb
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.AssemblyInfoInputs.cache
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.AssemblyInfo.cs
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.csproj.CoreCompileInputs.cache
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.dll
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\refint\LogMaster.dll
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.pdb
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.genruntimeconfig.cache
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\ref\LogMaster.dll
