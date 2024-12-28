@@ -1,38 +1,61 @@
 using System;
 using System.Collections.Generic;
 
-public class LogStatistics
-{
+    public class LogStatistics
+    {
     public int TotalLines { get; private set; }
     public int ErrorCount { get; private set; }
     public int WarningCount { get; private set; }
     public Dictionary<int, int> FrequencyByHour { get; private set; }
 
+    private readonly LogParser _parser;
+
     public LogStatistics()
     {
         FrequencyByHour = new Dictionary<int, int>();
+        _parser = new LogParser("yyyy-MM-dd HH:mm:ss");
     }
 
-    public void CalculateStats(List<string> logs)
+    public void CalculateStats(IEnumerable<string> logs)
     {
-        TotalLines = logs.Count;
+        ResetStats(); // Réinitialiser les statistiques avant de calculer
+
         foreach (var line in logs)
         {
-            if (line.Contains("[Error]")) ErrorCount++;
-            if (line.Contains("[Warning]")) WarningCount++;
+            if (line.Contains("[Error]", StringComparison.OrdinalIgnoreCase)) ErrorCount++;
+            if (line.Contains("[Warning]", StringComparison.OrdinalIgnoreCase)) WarningCount++;
 
-            var parser = new LogParser("yyyy-MM-dd HH:mm:ss");
-            var parsed = parser.ParseLine(line);
-            if (parsed.ContainsKey("Timestamp"))
+            try
             {
-                var timestamp = DateTime.Parse(parsed["Timestamp"]);
-                int hour = timestamp.Hour;
-                if (!FrequencyByHour.ContainsKey(hour))
+                var parsed = _parser.ParseLine(line);
+                if (parsed.ContainsKey("Timestamp"))
                 {
-                    FrequencyByHour[hour] = 0;
+                    var timestamp = DateTime.Parse(parsed["Timestamp"]);
+                    int hour = timestamp.Hour;
+                    if (!FrequencyByHour.ContainsKey(hour))
+                    {
+                        FrequencyByHour[hour] = 0;
+                    }
+                    FrequencyByHour[hour]++;
                 }
-                FrequencyByHour[hour]++;
+            }
+            catch (FormatException)
+            {
+                // Gérer les erreurs de format de date si nécessaire
+            }
+            catch (Exception ex)
+            {
+                // Gérer d'autres exceptions si nécessaire
+                Console.WriteLine($"Error parsing line: {ex.Message}");
             }
         }
+    }
+
+    private void ResetStats()
+    {
+        TotalLines = 0;
+        ErrorCount = 0;
+        WarningCount = 0;
+        FrequencyByHour.Clear();
     }
 }

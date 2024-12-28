@@ -26,7 +26,7 @@ class Program
             Console.WriteLine($"Detected {anomalies.Count} anomalies.");
 
             LogExporter exporter = new LogExporter("ExportedLogs");
-            exporter.ExportToCSV(logFile.Lines);
+            exporter.ExportToCSV(logFile.Lines, "ExportedLogs.csv");
             Console.WriteLine("Logs exported successfully!");
         }
         catch (Exception ex)
