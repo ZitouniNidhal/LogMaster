@@ -12,3 +12,4 @@ C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\refint\LogMaster.dll
 C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.pdb
 C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.genruntimeconfig.cache
 C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\ref\LogMaster.dll
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0\LogMaster.sourcelink.json

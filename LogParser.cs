@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-
+namespace LogMasterAnalyzer{
 public class LogParser
 {
     public string DateFormat { get; set; }
@@ -45,7 +45,7 @@ public class LogParser
             var parsed = ParseLine(line);
             if (parsed.TryGetValue("Timestamp", out var timestampStr))
             {
-                if (DateTime.TryParse(timestampStr, out DateTime timestamp) && timestamp >= start && timestamp <= end)
+                if (DateTime.TryParseExact(timestampStr, DateFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime timestamp) && timestamp >= start && timestamp <= end)
                 {
                     filteredLogs.Add(line);
                 }
@@ -119,7 +119,7 @@ public class LogParser
         }
     }
 
-    public string FormatLog(Dictionary<string, string> log)
+    public static string FormatLog(Dictionary<string, string> log)
     {
         if (log.ContainsKey("Timestamp") && log.ContainsKey("Level") && log.ContainsKey("Message"))
         {
@@ -128,4 +128,5 @@ public class LogParser
 
         return string.Join(" | ", log.Values);
     }
+}
 }

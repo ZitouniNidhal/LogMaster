@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
 
+
+
+
+namespace LogMasterAnalyzer{
     public class LogStatistics
     {
     public int TotalLines { get; private set; }
@@ -30,7 +34,7 @@ using System.Collections.Generic;
                 var parsed = _parser.ParseLine(line);
                 if (parsed.ContainsKey("Timestamp"))
                 {
-                    var timestamp = DateTime.Parse(parsed["Timestamp"]);
+                    var timestamp = DateTime.Parse(parsed["Timestamp"], System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.RoundtripKind);
                     int hour = timestamp.Hour;
                     if (!FrequencyByHour.ContainsKey(hour))
                     {
@@ -58,4 +62,5 @@ using System.Collections.Generic;
         WarningCount = 0;
         FrequencyByHour.Clear();
     }
+}
 }

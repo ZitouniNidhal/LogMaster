@@ -1,37 +1,43 @@
 ﻿using System;
 
-class Program
+
+
+namespace LogMasterAnalyzer
 {
-    static void Main(string[] args)
-    {
-        try
+static class Program
+{
+  [STAThread]
+        static void Main(string[] args)
         {
-            Console.WriteLine("Enter the log file path:");
-            string filePath = Console.ReadLine();
+            Console.WriteLine("Welcome to LogMaster Analyzer!");
 
-            LogFile logFile = new LogFile(filePath);
-            logFile.LoadFile();
+            // Use FileSelector to choose a file
+            FileSelector fileSelector = new FileSelector();
+            string filePath = fileSelector.SelectLogFile();
 
-            Console.WriteLine($"Loaded {logFile.GetLineCount()} lines.");
-            
-            LogParser parser = new LogParser("yyyy-MM-dd HH:mm:ss");
-            LogStatistics stats = new LogStatistics();
-            stats.CalculateStats(logFile.Lines);
+            if (string.IsNullOrEmpty(filePath))
+            {
+                Console.WriteLine("No file selected. Exiting application.");
+                return;
+            }
 
-            Console.WriteLine($"Total Errors: {stats.ErrorCount}");
-            Console.WriteLine($"Total Warnings: {stats.WarningCount}");
+            Console.WriteLine($"Selected file: {filePath}");
 
-            AnomalyDetector detector = new AnomalyDetector(0.1);
-            var anomalies = detector.DetectAnomalies(logFile.Lines);
-            Console.WriteLine($"Detected {anomalies.Count} anomalies.");
+            // Check if the file exists
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("The specified file does not exist.");
+                return;
+            }
 
-            LogExporter exporter = new LogExporter("ExportedLogs");
-            exporter.ExportToCSV(logFile.Lines, "ExportedLogs.csv");
-            Console.WriteLine("Logs exported successfully!");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
+            Console.WriteLine("Loading and analyzing the file...");
+            string[] lines = File.ReadAllLines(filePath);
+
+            // Use LogAnalyzer to analyze the file
+            LogAnalyzer logAnalyzer = new LogAnalyzer();
+            logAnalyzer.AnalyzeLogs(lines);
+
+            Console.WriteLine("Analysis complete.");
         }
     }
 }

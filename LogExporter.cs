@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+namespace LogMasterAnalyzer{
 public class LogExporter
 {
     public enum ExportFormat { PDF, CSV, TXT }
@@ -27,7 +27,7 @@ public class LogExporter
             switch (format)
             {
                 case ExportFormat.CSV:
-                    ExportToCSV(logs, filePath);
+                    LogExporter.ExportToCSV(logs, filePath);
                     break;
                 case ExportFormat.TXT:
                     ExportToTXT(logs, filePath);
@@ -46,12 +46,12 @@ public class LogExporter
         }
     }
 
-    public void ExportToCSV(List<string> logs, string filePath)
+    public static void ExportToCSV(List<string> logs, string filePath)
     {
         File.WriteAllLines(filePath, logs);
     }
 
-    private void ExportToTXT(List<string> logs, string filePath)
+    private static void ExportToTXT(List<string> logs, string filePath)
     {
         File.WriteAllLines(filePath, logs);
     }
@@ -60,4 +60,5 @@ public class LogExporter
     {
         return $"{ExportPath}.{format.ToString().ToLower()}";
     }
+}
 }

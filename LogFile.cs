@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+namespace LogMasterAnalyzer
+{
 public class LogFile
 {
     public string FilePath { get; set; }
@@ -9,9 +10,10 @@ public class LogFile
     public List<string> Lines { get; private set; }
     public DateTime LastModified { get; private set; }
 
-    public LogFile(string filePath)
+    public  LogFile(string filePath)
     {
         FilePath = filePath;
+        Lines = new List<string>();
     }
 
     public void LoadFile()
@@ -37,4 +39,5 @@ public class LogFile
     {
         return Lines.FindAll(line => line.Contains(keyword));
     }
+}
 }

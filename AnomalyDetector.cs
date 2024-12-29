@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+namespace LogMasterAnalyzer{
 public class AnomalyDetector
 {
     public double Threshold { get; set; }
@@ -23,4 +23,5 @@ public class AnomalyDetector
         }
         return Anomalies;
     }
+}
 }
