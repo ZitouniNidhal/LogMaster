@@ -3,14 +3,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <UseWPF>false</UseWPF>
+  <TargetFramework>net8.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Windows.Forms" Version="8.0.0" />
-     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
+    <PackageReference Include="System.Windows.Forms"  />
+     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms"
+     />
   </ItemGroup>
 
 </Project>
