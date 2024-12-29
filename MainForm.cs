@@ -8,7 +8,7 @@ namespace LogMasterAnalyzer
     public class MainForm : Form
     {
         private Button btnStart;
-        private Button selectFileButton; // Bouton pour sélectionner le fichier
+        private Button selectFileButton; // Button to select the file
         private TextBox txtInput;
         private Label lblMessage;
         private PictureBox picLogo;
@@ -17,103 +17,105 @@ namespace LogMasterAnalyzer
         public MainForm()
         {
             InitializeComponent();
-            // Définir les propriétés de la fenêtre
+            // Set window properties
             this.Text = "LogMaster Analyzer";
-            this.Size = new Size(400, 300);
+            this.Size = new Size(500, 400);
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = Color.White;
-            this.Font = new Font("Arial", 10);
+            this.BackColor = Color.White; // Clean white background
+            this.Font = new Font("Segoe UI", 10); // Modern font
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
         }
 
         private void InitializeComponent()
         {
-            // Crée un PictureBox pour afficher l'image
+            // Create a PictureBox for displaying the logo
             picLogo = new PictureBox();
-            picLogo.Image = Image.FromFile("C:/Users/nidha/OneDrive/Bureau/1.png"); // Remplacez avec le chemin de votre image
+            picLogo.Image = Image.FromFile("C:/Users/nidha/OneDrive/Bureau/1.png"); // Replace with your image path
             picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
-            picLogo.Location = new Point(150, 10);
-            picLogo.Size = new Size(100, 100);
+            picLogo.Location = new Point(175, 10);
+            picLogo.Size = new Size(150, 100);
             this.Controls.Add(picLogo);
 
-            // Crée un label
+            // Create a label
             lblMessage = new Label();
             lblMessage.Text = "Veuillez entrer un fichier de log.";
             lblMessage.Location = new Point(10, 130);
-            lblMessage.Size = new Size(380, 30);
-            lblMessage.ForeColor = Color.DarkBlue;
+            lblMessage.Size = new Size(460, 30);
+            lblMessage.ForeColor = Color.FromArgb(50, 50, 50); // Dark gray for modern look
+            lblMessage.Font = new Font("Segoe UI", 12, FontStyle.Regular);
             this.Controls.Add(lblMessage);
 
-            // Crée un champ de texte pour l'entrée de fichier
+            // Create a text box for file input
             txtInput = new TextBox();
-            txtInput.Location = new Point(10, 160);
-            txtInput.Size = new Size(250, 30);
+            txtInput.Location = new Point(10, 170);
+            txtInput.Size = new Size(350, 30);
+            txtInput.Font = new Font("Segoe UI", 10);
             this.Controls.Add(txtInput);
 
-            // Crée un bouton pour démarrer l'analyse
+            // Create a button to start analysis
             btnStart = new Button();
             btnStart.Text = "Analyser";
-            btnStart.Location = new Point(270, 160);
+            btnStart.Location = new Point(370, 170);
             btnStart.Size = new Size(100, 30);
-            btnStart.BackColor = Color.LightBlue;
+            btnStart.BackColor = Color.FromArgb(0, 120, 215); // Modern blue color
             btnStart.ForeColor = Color.White;
-            btnStart.Font = new Font("Arial", 10, FontStyle.Bold);
-            btnStart.Click += BtnStart_Click;
+            btnStart.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            btnStart.FlatStyle = FlatStyle.Flat; // Flat button style
+            btnStart.Click += BtnStart_Click; // Ensure this is connected
             this.Controls.Add(btnStart);
 
-            // Crée un bouton pour sélectionner un fichier
+            // Create a button to select a file
             selectFileButton = new Button();
             selectFileButton.Text = "Sélectionner un fichier";
-            selectFileButton.Location = new Point(20, 200);
+            selectFileButton.Location = new Point(10, 210);
             selectFileButton.Size = new Size(150, 30);
+            selectFileButton.BackColor = Color.FromArgb(0, 120, 215); // Same modern blue
+            selectFileButton.ForeColor = Color.White;
+            selectFileButton.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            selectFileButton.FlatStyle = FlatStyle.Flat; // Flat button style
             selectFileButton.Click += SelectFileButton_Click;
             this.Controls.Add(selectFileButton);
 
-            // Crée un PictureBox pour afficher l'image sélectionnée
+            // Create a PictureBox to display the selected image
             pictureBox = new PictureBox();
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox.Location = new Point(20, 240);
-            pictureBox.Size = new Size(760, 500);
+            pictureBox.Location = new Point(10, 250);
+            pictureBox.Size = new Size(460, 100);
             this.Controls.Add(pictureBox);
         }
 
-        // Fonction pour gérer l'événement de clic sur le bouton de sélection de fichier
+        // Function to handle the click event for the file selection button
         private void SelectFileButton_Click(object sender, EventArgs e)
         {
-            // Crée une instance de OpenFileDialog
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "All Files (*.*)|*.*";
             openFileDialog.Title = "Sélectionner un fichier";
 
-            // Ouvre la boîte de dialogue de sélection de fichier
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog.FileName;
 
-                // Vérifie si le fichier existe avant de tenter de le charger
                 if (File.Exists(filePath))
                 {
                     try
                     {
-                        // Essaye de charger l'image
                         pictureBox.Image = Image.FromFile(filePath);
-                        MessageBox.Show("Fichier chargé avec succès!");
+                        MessageBox.Show("Fichier chargé avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        // Si une erreur se produit, affiche un message
-                        MessageBox.Show($"Erreur lors du chargement du fichier : {ex.Message}");
+                        MessageBox.Show($"Erreur lors du chargement du fichier : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Le fichier sélectionné n'existe pas.");
+                    MessageBox.Show("Le fichier sélectionné n'existe pas.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        // Fonction pour gérer l'événement de clic sur le bouton d'analyse
+        // Function to handle the click event for the analyze button
         private void BtnStart_Click(object sender, EventArgs e)
         {
             string filePath = txtInput.Text;
@@ -126,17 +128,20 @@ namespace LogMasterAnalyzer
 
             try
             {
-                // Charge les lignes du fichier et lance l'analyse
                 Console.WriteLine("Loading and analyzing the file...");
                 string[] lines = File.ReadAllLines(filePath);
 
-                // Utilise LogAnalyzer pour analyser le fichier
+                // Check if lines are loaded
+                if (lines.Length == 0)
+                {
+                    MessageBox.Show("Le fichier est vide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 LogAnalyzer logAnalyzer = new LogAnalyzer();
-                logAnalyzer.AnalyzeLogs(lines);
+                logAnalyzer.AnalyzeLogs(filePath);
 
                 Console.WriteLine("Analysis complete.");
-
-                // Affiche un message dans le label après l'analyse
                 lblMessage.Text = "Analyse terminée avec succès.";
                 lblMessage.ForeColor = Color.DarkGreen;
             }

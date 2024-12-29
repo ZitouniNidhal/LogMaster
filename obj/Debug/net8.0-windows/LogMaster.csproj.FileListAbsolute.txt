@@ -13,3 +13,6 @@ C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0-windows\refint\LogMast
 C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0-windows\LogMaster.pdb
 C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0-windows\LogMaster.genruntimeconfig.cache
 C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0-windows\ref\LogMaster.dll
+C:\Users\nidha\OneDrive\Bureau\LogMaster\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0-windows\LogMaster.csproj.AssemblyReference.cache
+C:\Users\nidha\OneDrive\Bureau\LogMaster\obj\Debug\net8.0-windows\LogMaster.csproj.Up2Date
