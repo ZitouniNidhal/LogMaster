@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "2JxiBd+u+By6J0p3HPLhOoZqH4eeCnqWhkl7tb6lgi0kd6QzXpcV7XfTFCvzeWiy6e+XVqqyzGwKY5hCH86A8g==",
-  "success": true,
+  "dgSpecHash": "xouft1j3i9bO/EVlPOHJOcckXVpTWcBrEMJrMZtthgAGoo48JS6rANxS0iu1PvLN3e8GaXGC6jOXHS1JdcGtCg==",
+  "success": false,
   "projectFilePath": "C:\\Users\\nidha\\OneDrive\\Bureau\\LogMaster\\LogMaster.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1102",
+      "level": "Error",
+      "message": "Package System.Windows.Forms avec la version (>= 8.0.0) introuvable\r\n  - Version(s) 1 trouvée(s) dans nuget.org [version la plus proche : 4.0.0]\r\n  - Version(s) 0 trouvée(s) dans Microsoft Visual Studio Offline Packages\r\n  - Version(s) 0 trouvée(s) dans C:\\Program Files\\dotnet\\library-packs",
+      "libraryId": "System.Windows.Forms",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

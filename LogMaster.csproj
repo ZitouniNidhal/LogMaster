@@ -1,15 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <UseWPF>false</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
-<ItemGroup>
 
-    <Reference Include="System.Windows.Forms" />
-    <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
-
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Forms" Version="8.0.0" />
+     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
   </ItemGroup>
+
 </Project>

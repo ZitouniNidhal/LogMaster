@@ -5,7 +5,9 @@
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "System.Windows.Forms >= 8.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\nidha\\.nuget\\packages\\": {},
@@ -56,6 +58,12 @@
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
+        "dependencies": {
+          "System.Windows.Forms": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -78,5 +86,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1102",
+      "level": "Error",
+      "message": "Package System.Windows.Forms avec la version (>= 8.0.0) introuvable\r\n  - Version(s) 1 trouvée(s) dans nuget.org [version la plus proche : 4.0.0]\r\n  - Version(s) 0 trouvée(s) dans Microsoft Visual Studio Offline Packages\r\n  - Version(s) 0 trouvée(s) dans C:\\Program Files\\dotnet\\library-packs",
+      "libraryId": "System.Windows.Forms",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }
