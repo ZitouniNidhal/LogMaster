@@ -1,19 +1,17 @@
 using System.Windows.Forms;
 
-
 namespace LogMasterAnalyzer
 {
-    
-
-    public  class FileSelector
+    public class FileSelector
     {
         public string SelectLogFile()
         {
             #if WINDOWS
                         using (OpenFileDialog openFileDialog = new OpenFileDialog())
                         {
-                            openFileDialog.Filter = "Text Files (*.txt;*.log)|*.txt;*.log|All Files (*.*)|*.*";
-                            openFileDialog.Title = "Select a log file";
+                            // Modifier le filtre pour inclure tous les types de fichiers
+                            openFileDialog.Filter = "Tous les fichiers (*.*)|*.*"; // Sélectionne tous les fichiers
+                            openFileDialog.Title = "Sélectionner un fichier de log";
             
                             if (openFileDialog.ShowDialog() == DialogResult.OK)
                             {
@@ -25,4 +23,4 @@ namespace LogMasterAnalyzer
                         return string.Empty;
         }
     }
-    }
+}
