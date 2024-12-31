@@ -3,11 +3,9 @@ using System.Windows.Forms;
 
 namespace LogMasterAnalyzer
 {
-    
-
-    public  class FileSelector
+    public static class LogFileSelector
     {
-        public string SelectLogFile()
+        public static string SelectLogFile()
         {
             #if WINDOWS
                         using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -25,4 +23,5 @@ namespace LogMasterAnalyzer
                         return string.Empty;
         }
     }
-    }
+}
+    

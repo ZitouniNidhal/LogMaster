@@ -31,7 +31,7 @@ namespace LogMasterAnalyzer
         {
             // Create a PictureBox for displaying the logo
             picLogo = new PictureBox();
-            picLogo.Image = Image.FromFile("C:/Users/nidha/OneDrive/Bureau/1.png"); // Replace with your image path
+            picLogo.Image = Image.FromFile("341.png"); // Replace with your image path
             picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             picLogo.Location = new Point(175, 10);
             picLogo.Size = new Size(150, 100);
@@ -100,12 +100,15 @@ namespace LogMasterAnalyzer
                 {
                     try
                     {
-                        pictureBox.Image = Image.FromFile(filePath);
-                        MessageBox.Show("Fichier chargé avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Lire le contenu du fichier (par exemple, texte, données, etc.)
+                        string fileContent = File.ReadAllText(filePath); // Si c'est un fichier texte
+                        MessageBox.Show($"Fichier chargé avec succès ! Contenu :\n{fileContent.Substring(0, Math.Min(500, fileContent.Length))}", 
+                                        "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Erreur lors du chargement du fichier : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Erreur lors du traitement du fichier : {ex.Message}", 
+                                        "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -122,7 +125,7 @@ namespace LogMasterAnalyzer
 
             if (string.IsNullOrEmpty(filePath))
             {
-                MessageBox.Show("Veuillez entrer un fichier de log.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Veuillez entrer un fichier .", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

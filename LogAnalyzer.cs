@@ -30,7 +30,7 @@ namespace LogMasterAnalyzer
             }
         }
 
-        private void AnalyzeTextLogs(string filePath)
+        private static void AnalyzeTextLogs(string filePath)
         {
             string[] lines = File.ReadAllLines(filePath);
             int infoCount = 0, warningCount = 0, errorCount = 0;
