@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Drawing2D;
 
 namespace LogMasterAnalyzer
 {
@@ -47,14 +48,43 @@ namespace LogMasterAnalyzer
             this.Controls.Add(lblMessage);
 
             // Create a text box for file input
+            // Créer un TextBox pour l'entrée de fichier
             txtInput = new TextBox();
-            txtInput.Location = new Point(10, 170);
+            txtInput.Location = new Point((this.ClientSize.Width - 350) / 2, 170); // Centrer horizontalement
             txtInput.Size = new Size(350, 30);
             txtInput.Font = new Font("Segoe UI", 10);
+            txtInput.BackColor = Color.White;
+            txtInput.ForeColor = Color.FromArgb(50, 50, 50); // Couleur de texte sombre
+            txtInput.BorderStyle = BorderStyle.FixedSingle;
+            txtInput.Text = "Entrez le chemin du fichier..."; // Texte d'espace réservé
+            txtInput.GotFocus += (sender, e) => { if (txtInput.Text == "Entrez le chemin du fichier...") txtInput.Text = ""; };
+            txtInput.LostFocus += (sender, e) => { if (string.IsNullOrEmpty(txtInput.Text)) txtInput.Text = "Entrez le chemin du fichier..."; };
             this.Controls.Add(txtInput);
 
+// Ajouter une bordure arrondie (optionnel, nécessite un contrôle personnalisé ou un PictureBox)
+var roundedBorder = new PictureBox();
+roundedBorder.Size = new Size(352, 32);
+roundedBorder.Location = new Point(txtInput.Location.X - 1, txtInput.Location.Y - 1);
+roundedBorder.BackColor = Color.Transparent;
+roundedBorder.Paint += (sender, e) =>
+{
+    using (GraphicsPath path = new GraphicsPath())
+    {
+        int radius = 10; // Rayon des coins arrondis
+        Rectangle rect = new Rectangle(0, 0, roundedBorder.Width, roundedBorder.Height);
+        path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+        path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+        path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
+        path.AddArc(rect.X, rect.Y + rect.Height - radius, radius, radius, 90, 90);
+        path.CloseFigure();
+        e.Graphics.DrawPath(new Pen(Color.FromArgb(200, 200, 200), 2), path); // Couleur de bordure grise
+    }
+};
+this.Controls.Add(roundedBorder);
+roundedBorder.BringToFront();
+txtInput.BringToFront();
             // Create a button to start analysis
-            btnStart = new Button();
+           /* btnStart = new Button();
             btnStart.Text = "Analyser";
             btnStart.Location = new Point(370, 170);
             btnStart.Size = new Size(100, 30);
@@ -63,20 +93,43 @@ namespace LogMasterAnalyzer
             btnStart.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             btnStart.FlatStyle = FlatStyle.Flat; // Flat button style
             btnStart.Click += BtnStart_Click; // Ensure this is connected
-            this.Controls.Add(btnStart);
+            this.Controls.Add(btnStart);*/
 
             // Create a button to select a file
             selectFileButton = new Button();
             selectFileButton.Text = "Sélectionner un fichier";
-            selectFileButton.Location = new Point(10, 210);
             selectFileButton.Size = new Size(150, 30);
-            selectFileButton.BackColor = Color.FromArgb(0, 120, 215); // Same modern blue
+            selectFileButton.BackColor = Color.FromArgb(0, 120, 215); // Couleur bleue moderne
             selectFileButton.ForeColor = Color.White;
             selectFileButton.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            selectFileButton.FlatStyle = FlatStyle.Flat; // Flat button style
-            selectFileButton.Click += SelectFileButton_Click;
-            this.Controls.Add(selectFileButton);
+            selectFileButton.FlatStyle = FlatStyle.Flat; // Style de bouton plat
+            selectFileButton.FlatAppearance.BorderSize = 1; // Taille de la bordure
+            selectFileButton.FlatAppearance.BorderColor = Color.White; // Couleur de la bordure
 
+            // Centrer le bouton horizontalement
+int centerX = (this.ClientSize.Width - selectFileButton.Width) / 2;
+selectFileButton.Location = new Point(centerX, 210);
+
+// Ajouter un gestionnaire d'événements pour dessiner les coins arrondis
+selectFileButton.Paint += (sender, e) =>
+{
+    using (GraphicsPath path = new GraphicsPath())
+    {
+        int radius = 15; // Rayon des coins arrondis
+        Rectangle rect = new Rectangle(0, 0, selectFileButton.Width, selectFileButton.Height);
+
+        // Créer un chemin avec des coins arrondis
+        path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+        path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+        path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
+        path.AddArc(rect.X, rect.Y + rect.Height - radius, radius, radius, 90, 90);
+        path.CloseFigure();
+
+        // Appliquer le chemin au bouton
+        selectFileButton.Region = new Region(path);
+    }
+};
+           this.Controls.Add(selectFileButton);
             // Create a PictureBox to display the selected image
             pictureBox = new PictureBox();
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
