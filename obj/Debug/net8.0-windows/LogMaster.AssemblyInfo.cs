@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogMaster")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ad326dc21308097f778e8274f7eff5595c0b955")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92b9327bd9435cbf863dfdb33bc56056ae90d166")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogMaster")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogMaster")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
