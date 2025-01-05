@@ -87,3 +87,13 @@ namespace LogMasterAnalyzer
         }
     }
 }
+private static void DisplayStatistics(int totalLines, int infoCount, int warningCount, int errorCount)
+        {
+            Console.WriteLine($"File statistics:");
+            Console.WriteLine($"- Total lines: {totalLines}");
+            Console.WriteLine($"- [Info] messages: {infoCount}");
+            Console.WriteLine($"- [Warning] messages: {warningCount}");
+            Console.WriteLine($"- [Error] messages: {errorCount}");
+        }
+    }
+}
